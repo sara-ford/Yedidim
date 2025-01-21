@@ -2,6 +2,7 @@
   "name": "yedidim",
   "version": "1.0.0",
   "main": "server-with-express.js",
+  "type": "commonjs",
   "scripts": {
     "start": "node server-with-express.js",
     "test": "echo \"Error: no test specified\" && exit 1"
