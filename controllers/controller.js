@@ -1,7 +1,6 @@
-const autoBind = require('auto-bind');  // השתמש ב-require
+const autoBind = require('auto-bind');
 
 class Controller {
-
     constructor(service) {
         this.service = service;
         autoBind(this);
@@ -12,10 +11,9 @@ class Controller {
             const result = await this.service.getAll(req.query);
             return res.json(result);
         } catch (e) {
-            next(e); 
+            next(e);
         }
     }
-
 }
 
-export default Controller;  // השתמש ב-export במקום module.exports
+module.exports = Controller;

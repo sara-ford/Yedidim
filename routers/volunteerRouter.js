@@ -1,15 +1,8 @@
 const express = require('express');
-const router = express.Router();
-const Volunteer = require('../models/Volunteers.model.js');
+const controller = require('../controllers/volunteersController.js');
 
-router.get('/', async (req, res) => {
-    try {
-        const volunteers = await Volunteer.find({});
-        res.json(volunteers);
-    } catch (error) {
-        console.log('Error fetching volunteers:', error);
-        res.status(500).send('An error occurred');
-    }
-});
+const router = express.Router();
+
+router.get('/', controller.getAll);
 
 module.exports = router;

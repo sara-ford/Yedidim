@@ -1,21 +1,20 @@
-const mongoose = require('mongoose');
-const Volunteer = require('../models/Volunteers.model.js');
+const Repository = require('./Repository.js');
+const volunteer = require('../models/Volunteers.model.js');
 
-class VolunteerRepo {
+class volunteerRepo extends Repository {
     constructor() {
-        this.model = Volunteer;
+        super(volunteer);
     }
 
-    async getAll() {
+    async getAll(query) {
         try {
-            const volunteers = await this.model.find({});
-            console.log('Fetched volunteers:', volunteers);
-            return volunteers;
+            const result = await this.model.find(query);
+            return result;
         } catch (error) {
-            console.error('Error fetching volunteers:', error);
-            throw error;
+            console.log(error);
+            throw Error('error getting the list of data');
         }
     }
 }
 
-module.exports = new VolunteerRepo();
+module.exports = new volunteerRepo();
