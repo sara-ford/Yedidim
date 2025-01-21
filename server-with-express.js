@@ -1,25 +1,22 @@
 require('dotenv').config();
 const express = require('express');
 
-const volunteerRouter = require('./routers/volunteerRouter')
+const volunteerRouter = require('./routers/volunteerRouter'); 
 
 const app = express();
 
-const host = process.env.HOST;
-const port = process.env.PORT;
-
 app.use(express.json());
 
-app.use('/api/volunteers',volunteerRouter)
-// app.use('/api/courses',coursesRouter);
-
+app.use('/api/Volunteers', volunteerRouter);
 
 app.use((err, req, res, next) => {
     console.log(err);
     res.status(500).send('An error occurred, please try later...');
-})
+});
 
-// app.listen(port, host, () => {
-//     here we can do stuff that should be done once the server is up
-//     console.log(`express server is running at http://${host}:${port}`);
-// })
+const host = process.env.HOST || '127.0.0.1';
+const port = process.env.PORT || 3000;
+
+app.listen(port, host, () => {
+    console.log(`express server is running at http://${host}:${port}`);
+});

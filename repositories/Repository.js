@@ -1,78 +1,20 @@
-const autoBind = require( 'auto-bind' );
-const db = require('./db.js');
+const autoBind = require('auto-bind');
+const db = require('./db'); // יש לוודא שזו הדרך הנכונה לייבא את החיבור למסד נתונים
 
 class Repository {
 
     constructor(model) {
         this.model = model;
-        autoBind( this );
-        db.connect();
+        autoBind(this);
+        db.connect(); // להתחבר למסד הנתונים
     }
 
-    async getAll(query) {
+    async getAll() {
         try {
-            return await this.model.find(query);
-        }
-        catch (error) {
-            console.log(error);
-            throw Error('error getting the list of data');
-        }
-    }
-    async get(id) {
-        try {
-            const item = await this.model.findById(id);
-
-            if (!item) {
-                const error = new Error('Item not found');
-
-                error.statusCode = 404;
-                throw error;
-            }
-
-            return new HttpResponse(item);
-        } catch (errors) {
-            throw errors;
-        }
-    }
-
-    async insert(data) {
-        try {
-            const item = await this.model.create(data);
-
-            if (item) {
-                return new HttpResponse(item);
-            }
-            throw new Error('Something wrong happened');
-
+            return await this.model.find(); // מחזיר את כל הנתונים מהטבלה
         } catch (error) {
-            throw error;
-        }
-    }
-
-    async update(id, data) {
-        try {
-            const item = await this.model.findByIdAndUpdate(id, data, { 'new': true });
-
-            return new HttpResponse(item);
-        } catch (errors) {
-            throw errors;
-        }
-    }
-
-    async delete(id) {
-        try {
-            const item = await this.model.findByIdAndDelete(id);
-
-            if (!item) {
-                const error = new Error('Item not found');
-
-                error.statusCode = 404;
-                throw error;
-            } else {
-                return new HttpResponse(item, { 'deleted': true });
-            }
-        } catch (errors) {
-            throw errors;
+            console.log(error);
+            throw Error('Error getting the list of data');
         }
     }
 }

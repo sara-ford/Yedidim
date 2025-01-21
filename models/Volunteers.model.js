@@ -3,12 +3,10 @@ const mongoose = require('mongoose');
 const volunteersSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
-    phone: Number,
-    specialties: Array
+    phone: String, 
+    specialties: [String] 
 });
 
-const Volunteer = mongoose.model('Volunteers', volunteersSchema);
+const Volunteer = mongoose.model('Volunteer', volunteersSchema);
 
 module.exports = Volunteer;
-
-console.log("jjj")
