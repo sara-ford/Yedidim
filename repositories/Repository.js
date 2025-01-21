@@ -1,22 +1,34 @@
 const autoBind = require('auto-bind');
-const db = require('./db'); // יש לוודא שזו הדרך הנכונה לייבא את החיבור למסד נתונים
+const db = require('./db.js');
 
 class Repository {
 
     constructor(model) {
         this.model = model;
-        autoBind(this);
-        db.connect(); // להתחבר למסד הנתונים
+        autoBind(this); // חיבור המתודות לאובייקט
+        this.connectToDb(); // מחבר את בסיס הנתונים
     }
 
-    async getAll() {
+    // מחבר למסד הנתונים
+    async connectToDb() {
         try {
-            return await this.model.find(); // מחזיר את כל הנתונים מהטבלה
+            await db.connect(); // לוודא שהחיבור עובד
         } catch (error) {
-            console.log(error);
-            throw Error('Error getting the list of data');
+            console.error('Error connecting to DB:', error); 
         }
     }
+
+    // פונקציה לשליפת כל הנתונים
+    async getAll(query) {
+        try {
+            const data = await this.model.find(query);
+            return data;
+        } catch (error) {
+            console.log('Error fetching data:', error);
+            throw new Error('Error getting the list of data');
+        }
+    }
+
 }
 
 module.exports = Repository;
