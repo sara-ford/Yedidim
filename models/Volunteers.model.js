@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const volunteersSchema = new mongoose.Schema({
+const VolunteersSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
     phone: String, 
-    specialties: [String] 
+    specialties: [String] // עדיף גם להגדיר את המאפיינים כך
 });
 
-const Volunteer = mongoose.model('Volunteer', volunteersSchema);
+const Volunteer = mongoose.model('Volunteer', VolunteersSchema);
 
 module.exports = Volunteer;
