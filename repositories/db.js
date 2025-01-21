@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-const Volunteer = require('../models/Volunteers.model');
+const Volunteer = require('../models/Volunteers.model.js');
 
 async function connect() {
     try {
@@ -13,7 +13,5 @@ async function connect() {
         throw new Error('Error connecting to db. Please try later...');
     }
 }
-
-connect();
 
 module.exports = { connect };

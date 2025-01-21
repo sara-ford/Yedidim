@@ -1,9 +1,15 @@
 const express = require('express');
-const controller = require('../controllers/volunteersController');
-
 const router = express.Router();
+const Volunteer = require('../models/Volunteers.model.js');
 
-// ה-Route לשליפת כל הנתונים
-router.get('/', controller.getAll);
+router.get('/', async (req, res) => {
+    try {
+        const volunteers = await Volunteer.find({});
+        res.json(volunteers);
+    } catch (error) {
+        console.log('Error fetching volunteers:', error);
+        res.status(500).send('An error occurred');
+    }
+});
 
 module.exports = router;

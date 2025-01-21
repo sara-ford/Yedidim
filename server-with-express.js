@@ -1,8 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const volunteerRepo = require('./repositories/volunteerRepo');
-const volunteerRouter = require('./routers/volunteerRouter');
+const volunteerRepo = require('./repositories/volunteerRepo.js');
+const volunteerRouter = require('./routers/volunteerRouter.js');
 
 const app = express();
 const PORT = process.env.PORT || 8080;

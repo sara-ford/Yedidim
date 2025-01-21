@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Volunteer = require('../models/Volunteers.model');
+const Volunteer = require('../models/Volunteers.model.js');
 
 class VolunteerRepo {
     constructor() {
