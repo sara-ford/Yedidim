@@ -1,8 +1,9 @@
 const express = require('express');
-const controller = require('../controllers/vulonteersController'); // יש לוודא שהנתיב נכון
+const controller = require('../controllers/volunteersController');
 
 const router = express.Router();
 
-router.get('/', controller.getAll); // כאן אנחנו קוראים ל-Controller שיחזיר את כל הנתונים
+// ה-Route לשליפת כל הנתונים
+router.get('/', controller.getAll);
 
 module.exports = router;

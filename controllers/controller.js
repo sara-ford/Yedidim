@@ -1,4 +1,4 @@
-const autoBind = require('auto-bind');
+const autoBind = require('auto-bind');  // השתמש ב-require
 
 class Controller {
 
@@ -9,12 +9,13 @@ class Controller {
 
     async getAll(req, res, next) {
         try {
-            const result = await this.service.getAll(); // שליפה של כל הנתונים
-            return res.json(result); // מחזיר את הנתונים בפורמט JSON
+            const result = await this.service.getAll(req.query);
+            return res.json(result);
         } catch (e) {
-            next(e); // אם יש שגיאה, שולחים אותה ל-middleware של השגיאות
+            next(e); 
         }
     }
+
 }
 
-module.exports = Controller;
+export default Controller;  // השתמש ב-export במקום module.exports
