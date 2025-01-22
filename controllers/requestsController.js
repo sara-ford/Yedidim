@@ -14,6 +14,19 @@ class RequestController extends Controller {
             next(e);  
         }
     }
+    async getByPriorityCode(req, res) {
+        try {
+            const PriorityCode = req.params.priorityCode; // קבלת הקוד מה-URL
+            const data = await requestService.getByPriorityCode(PriorityCode); // קריאה לשירות
+            res.json(data); // החזרת התשובה ללקוח
+        } catch (error) {
+            console.log(error);
+            res.status(500).send('Error getting the list of data');
+        }
+    }
+    
+    
+    
 }
 
 module.exports = new RequestController();

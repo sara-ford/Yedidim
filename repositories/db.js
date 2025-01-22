@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const Volunteer = require('../models/Volunteers.model.js');
 
 async function connect() {
     console.log('Attempting to connect to MongoDB...');
