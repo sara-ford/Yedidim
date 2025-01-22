@@ -15,6 +15,15 @@ class volunteerRepo extends Repository {
             throw Error('error getting the list of data');
         }
     }
+    async checkIfVolunteerExisits(phone) {
+        try {
+            const result = await this.model.findOne({ phone });
+            return result;
+        } catch (error) {
+            console.log(error);
+            throw new Error('Error getting volunteer by phone');
+        }
+    }
 }
 
 module.exports = new volunteerRepo();

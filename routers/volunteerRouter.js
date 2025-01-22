@@ -5,4 +5,9 @@ const router = express.Router();
 
 router.get('/', controller.getAll);
 
+router.get('/phone/:phone', controller.checkIfVolunteerExisits);
+
+router.post('/insertVolunteer', controller.insertVolunteer);
+
+
 module.exports = router;

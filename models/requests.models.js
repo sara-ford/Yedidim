@@ -12,7 +12,7 @@ const requestsSchema = new mongoose.Schema({
   Status: { type: String, enum: ['waiting', 'in-progress', 'completed'], required: true },
   NumStuckPassengers: { type: Number, required: true },
   PriorityCode: { type: Number, required: true },
-  VolunteerCode: { type: Number, required: true }
+  VolunteerCode: { type: String, required: true } // שינינו ל-String
 });
 
 const Request = mongoose.model('Request', requestsSchema, 'Requests');
